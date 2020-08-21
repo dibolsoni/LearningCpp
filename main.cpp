@@ -36,9 +36,10 @@ int main()
 
     //IfStatement::init_statement();
     
-    int result = SwitchStatement::question_one_calculate(4,2,'p');
+    // int result = SwitchStatement::question_one_calculate(4,2,'p');
+    // std::cout << "result is " << result << "\n";
 
-    std::cout << "result is " << result << "\n";
+    SwitchStatement::question_two::printNumOfLegsCaller();
 
     return EXIT_SUCCESS; 
 }

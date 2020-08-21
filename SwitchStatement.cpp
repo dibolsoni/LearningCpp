@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 namespace SwitchStatement
 {
@@ -52,6 +53,74 @@ namespace SwitchStatement
             std::cout << "you return a invalid operator" << "\n";
             return false;
         }
+    }
+
+    namespace question_two 
+    {
+        enum Animal
+        {
+            ANIMAL_PIG,
+            ANIMAL_CHICKEN,
+            ANIMAL_GOAT,
+            ANIMAL_CAT,
+            ANIMAL_DOG,
+            ANIMAL_OSTRICH
+        };
+
+        std::string getAnimalName(Animal animal)
+        {
+            switch (animal)
+            {
+            case ANIMAL_PIG:
+                return "pig";
+            case ANIMAL_CHICKEN:
+                return "chicken";
+            case ANIMAL_GOAT:
+                return "goat";
+            case ANIMAL_CAT:
+                return "cat"; 
+            case ANIMAL_DOG:
+                return "dog"; 
+            case ANIMAL_OSTRICH:
+                return "ostrich";
+          
+            default:
+                std::cout << "type a valid animal as: pig, chicken, goat, cat, dog, ostrich \n";
+                break;
+            };
+
+        }
+
+        void printNumOfLegs(Animal animal)
+        {
+            switch (animal)
+            {
+            case ANIMAL_DOG:
+            case ANIMAL_CAT:
+            case ANIMAL_GOAT:
+            case ANIMAL_PIG:
+                std::cout << "A " << getAnimalName(animal) << " has 4 legs \n";
+                break;
+            case ANIMAL_OSTRICH:
+            case ANIMAL_CHICKEN:
+                std::cout << "A " << getAnimalName(animal) << " has 2 legs \n";
+                break;
+            default: 
+                std::cout << "invalid animal \n";
+                break;
+            }
+
+        }
+
+        void printNumOfLegsCaller()
+        {
+            printNumOfLegs(ANIMAL_CAT);
+            printNumOfLegs(ANIMAL_CHICKEN);
+        }
+
+
+        
+
     }
 
 
