@@ -29,7 +29,7 @@ int main()
     // Namespace::question_two();
     // Namespace::question_three();
 
-    // String::question_one();
+    String::string_view();
 
     // Enum::getEnum();
 
@@ -45,7 +45,7 @@ int main()
 
     // Random::randomUsingEffolkronium();
 
-    ArraySample::question_two();
+    // ArraySample::copy_array();
 
     return EXIT_SUCCESS; 
 }
