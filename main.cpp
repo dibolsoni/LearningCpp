@@ -7,6 +7,8 @@
 #include "Struct.cpp"
 #include "SwitchStatement.cpp"
 #include "IfStatement.cpp"
+#include "Random.cpp"
+#include "ArraySamples.cpp"
 #include <iostream>
 #include <bitset>
 
@@ -39,7 +41,11 @@ int main()
     // int result = SwitchStatement::question_one_calculate(4,2,'p');
     // std::cout << "result is " << result << "\n";
 
-    SwitchStatement::question_two::printNumOfLegsCaller();
+    // SwitchStatement::question_two::printNumOfLegsCaller();
+
+    // Random::randomUsingEffolkronium();
+
+    ArraySample::question_two();
 
     return EXIT_SUCCESS; 
 }
