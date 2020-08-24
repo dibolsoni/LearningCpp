@@ -154,5 +154,23 @@ namespace Pointers
         }
     }
 
+    void c_style_pointers()
+    {
+        int nArray[5]{ 9, 7, 5, 3, 1 };
+        char cArray[]{ "Hello!" };
+        const char *name{ "Alex" };
+    
+        std::cout << nArray << '\n'; // nArray will decay to type int*
+        std::cout << cArray << '\n'; // cArray will decay to type char*
+        std::cout << name << '\n'; // name is already type char*
+
+        char c{ 'Q' }; //PRINTED Q╠╠╠╠╜╡4;¿■A   
+        // Well, it assumed &c (which has type char*) was a string. So it printed the ‘Q’, and 
+        // then kept going. Next in memory was a bunch of garbage. 
+        std::cout << &c;
+    }
+
+    
+
 
 }

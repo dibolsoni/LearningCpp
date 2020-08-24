@@ -86,4 +86,58 @@ namespace ArraySample
         strcpy(dest, source); // A runtime error will occur in debug mode
         std::cout << dest << '\n';
     }
+
+    void allocate_dynamic_array()
+    {
+        std::cout << "enter a positive integer" << "\n";
+        std::size_t length{};
+        std::cin >> length;
+    
+        // use array new.  Note that length does not need to be constant!
+        int *array{ new int[length]{} }; 
+    
+        std::cout << "I just allocated an array of integers of length " << length << '\n';
+    
+        array[0] = 5; // set element 0 to value 5
+    
+        delete[] array; // use array delete to deallocate array
+    
+        // we don't need to set array to nullptr/0 here because it's going to go out of scope 
+        // immediately after this anyway
+
+        //The length of dynamically allocated arrays has to be a type that’s 
+        //convertible to std::size_t
+        std::cout << "enter a positive integer" << "\n";
+        int length2{};
+        std::cin >> length2;
+        int *array2{ new int[static_cast<std::size_t>(length2)]{} };
+
+        delete[] array2;
+    }
+
+    void dynamic_sorted_list()
+    {
+        int max_names{};
+        std::cout << "how many name do you want to store? " << "\n";
+        std::cin >> max_names;
+
+        // Ignore the line feed that was left by std::cin.
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        //pointer names to a new created string with casted max_names size
+        std::string* names{
+            new std::string[std::size_t(max_names)]{}
+        };
+
+        for (int i{0}; i < max_names; i++)
+        {
+            std::cout << "Enter name #" << i+1 << "\n";
+            std::getline(std::cin, names[i]);
+        }
+
+        std::cout << names[1];
+
+
+
+    }
 }

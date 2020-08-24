@@ -51,7 +51,9 @@ int main()
     // Pointers::print_address_and_value();
     // Pointers::getVowels();
     // Pointers::itinarating_an_array();
-    Pointers::Question_two::caller();
+    // Pointers::Question_two::caller();
+
+    ArraySample::dynamic_sorted_list();
 
     return EXIT_SUCCESS; 
 }
