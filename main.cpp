@@ -9,6 +9,7 @@
 #include "IfStatement.cpp"
 #include "Random.cpp"
 #include "ArraySamples.cpp"
+#include "Pointers.cpp"
 #include <iostream>
 #include <bitset>
 
@@ -29,7 +30,7 @@ int main()
     // Namespace::question_two();
     // Namespace::question_three();
 
-    String::string_view();
+    // String::string_view();
 
     // Enum::getEnum();
 
@@ -46,6 +47,11 @@ int main()
     // Random::randomUsingEffolkronium();
 
     // ArraySample::copy_array();
+
+    // Pointers::print_address_and_value();
+    // Pointers::getVowels();
+    // Pointers::itinarating_an_array();
+    Pointers::Question_two::caller();
 
     return EXIT_SUCCESS; 
 }
