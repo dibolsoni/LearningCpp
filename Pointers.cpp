@@ -170,6 +170,17 @@ namespace Pointers
         std::cout << &c;
     }
 
+    void const_pointers()
+    {
+        const int number{5};
+        // int *ptr_number{number} //compile error: must be const also
+        const int *ptr_number{&number}; //ok
+        int n{5};
+        const int *ptr_n{&n};//still ok, the ptr will point as a const
+        n = 2;//ok
+        //*ptr_n = 3// error: pointer is a const
+    }
+
     
 
 
