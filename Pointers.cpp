@@ -33,7 +33,13 @@ namespace Pointers
         int value2{ 45 };
         int *ptr2{ &value2 }; // declare a pointer and initialize with address of value
         // *ptr = &value; // error:So this line says, “retrieve the value that ptr is 
-        // pointing to (an integer), and overwrite it with the address of value (an address). 
+        // pointing to (an integer), and overwrite it with the address of value (an address).
+
+        //pointer of pointer
+        int *ptr_x{&x};
+        int **ptr_ptr_x{&ptr_x};
+        std::cout << *ptr_ptr_x << '\n';
+        std::cout << **ptr_ptr_x << '\n'; // first dereference to get pointer to int, second dereference to get int value
     }
 
     void deferencing_an_array()
@@ -179,6 +185,47 @@ namespace Pointers
         const int *ptr_n{&n};//still ok, the ptr will point as a const
         n = 2;//ok
         //*ptr_n = 3// error: pointer is a const
+    }
+
+    namespace VoidPointers
+    {
+        enum class Type
+        {
+            INT,
+            FLOAT,
+            CSTRING
+        };
+
+        void print_value(void *ptr, Type type)
+        {
+            switch (type)
+            {
+            case Type::INT:
+                std::cout << *static_cast<int*>(ptr) << "\n";
+                break;
+            case Type::FLOAT:
+                std::cout << *static_cast<float*>(ptr) << "\n";;
+                break;
+            case Type::CSTRING:
+            // std::cout knows to treat char* as a C-style string
+            // if we were to dereference the result, then we'd just 
+            // print the single char that ptr is pointing to
+                std::cout << static_cast<char*>(ptr) << "\n";
+                break;
+            
+            };
+        }
+
+        void caller()
+        {
+            int nValue{ 5 };
+            float fValue{ 7.5f };
+            char szValue[]{ "Mollie" };
+
+            print_value(&nValue, Type::INT);
+            print_value(&fValue, Type::FLOAT);
+            print_value(szValue, Type::CSTRING);
+        }
     }
 
     
