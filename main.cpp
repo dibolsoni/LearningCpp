@@ -53,10 +53,13 @@ int main()
     // Pointers::getVowels();
     // Pointers::itinarating_an_array();
     // Pointers::Question_two::caller();
+    // Pointers::VoidPointers::caller();
 
     // ArraySample::dynamic_sorted_list();
+    // ArraySample::std_array();
+    ArraySample::StructArray::caller();
 
-    References::caller();
+    // References::caller();
 
     return EXIT_SUCCESS; 
 }

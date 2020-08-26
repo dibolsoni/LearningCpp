@@ -1,5 +1,6 @@
 #include "effolkronium/random.hpp"
 #include <iostream>
+#include <array>
 #include <algorithm> //std::sort
 #include <iterator> //std::size
 #include <cstring> // for strcpy
@@ -137,7 +138,91 @@ namespace ArraySample
 
         std::cout << names[1];
 
-
-
     }
+
+    void two_dimensional_array()
+    {
+        int array[10][5];
+        // int **array = new int*[10]; //dynamic allocate 10 int pointers
+        // int **array = new int[10][5]; //wont work
+        int (*array2)[5] = new int[10][5]; //works
+        auto array3 = new int[10][5]; //better syntax! because will be a pointer so uses auto
+    }
+
+    void std_array()
+    {
+        std::array<int, 5> myArray{ 9, 7, 5, 3, 1 }; //must declare the length
+        // c++17
+        std::array myArray2{3,2,1,4,5}; //deduced to std::array<int, 5>
+
+        myArray[10] = 3; // works as basic array, dont check the length
+        // myArray.at(10) = 3; // better, because checks if is valid, if not throw an error
+
+        std::cout << "length: " << myArray.size() << '\n';
+        for (int element : myArray)
+            std::cout << element << ' ';
+
+        std::cout << '\n';
+
+        std::sort(myArray.begin(), myArray.end()); // sort the array forwards
+
+        for (int element : myArray)
+            std::cout << element << ' ';
+ 
+        std::cout << '\n';
+
+        std::cout << "itinarator with an index \n";
+        //the int itinarator in std::array is size_t, so the for must use size_t
+        for (std::size_t i{ 0 }; i < myArray.size(); ++i)
+            std::cout << i << "-" << myArray[i] << ' ';
+        std::cout << '\n';
+    }
+
+    namespace StructArray
+    {
+        struct House
+        {
+            int number{};
+            int stories{};
+            int rooms_per_story{};
+        };
+
+        //to make a cleaner syntax
+        struct Houses
+        {
+            House houses2[3]{};
+        };
+
+        void caller()
+        {
+            std::array<House, 3> houses{};
+
+            houses[0] = { 13, 4, 30 };
+            houses[1] = { 14, 3, 10 };
+            houses[2] = { 15, 3, 40 };
+        
+            for (const auto& house : houses)
+            {
+                std::cout   << "House number "  << house.number
+                            << " has "          << (house.stories * house.rooms_per_story)
+                            << " rooms\n";
+            };
+
+            //to make a cleaner syntax on init
+            // must use double {{}}
+            Houses array{{
+                {13, 4, 20},
+                { 14, 3, 10 },
+                { 15, 3, 40 }
+            }};
+            
+            for (const auto& house : array.houses2)
+            {
+                std::cout   << "House number "  << house.number
+                            << " has "          << (house.stories * house.rooms_per_story)
+                            << " rooms\n";
+            };
+        }
+    }
+
 }
