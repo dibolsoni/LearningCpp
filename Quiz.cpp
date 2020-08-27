@@ -49,7 +49,7 @@ namespace Chapter6
             return a.grade > b.grade;
         }
 
-        void get_students()
+        void caller()
         {
 
             std::vector<Student> students(3);           
@@ -73,9 +73,25 @@ namespace Chapter6
             }
 
         }
+    }
 
+    namespace QuestionThree
+    {
+        void swap(int& a, int& b)
+        {
+            const int temp{a};
+            a = b;
+            b = temp;
+        }
 
+        void caller()
+        {
+            int a{1};
+            int b{2};
+            std::cout << "before: " << a << "-" << b << '\n';
+            swap(a,b);
+            std::cout << "after: " << a << "-" << b << '\n';
 
-
+        }
     }
 }
