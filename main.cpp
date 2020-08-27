@@ -14,6 +14,7 @@
 #include <iostream>
 #include <bitset>
 #include "Vectors.cpp"
+#include "Quiz.cpp"
 
 void print_const(); 
 
@@ -59,11 +60,13 @@ int main()
     // ArraySample::dynamic_sorted_list();
     // ArraySample::std_array();
     // ArraySample::StructArray::caller();
-    ArraySample::STD_Algorithms::caller();
+    // ArraySample::STD_Algorithms::caller();
 
     // References::caller();
     // Vectors::caller();
 
+    // Chapter6::QuestionOne::caller();
+    Chapter6::QuestionTwo::get_students();
 
     return EXIT_SUCCESS; 
 }
