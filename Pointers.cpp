@@ -2,6 +2,8 @@
 #include <iterator> // for std::begin and std::end
 #include <cstddef> // for std::nullptr_t
 #include <algorithm> // count_if, begin, end
+#include <array>
+#include <iterator>
 // best pratice
 
 // When declaring a pointer variable, put the asterisk next to the variable name.
@@ -131,6 +133,19 @@ namespace Pointers
         std::cout << *(arr + 2) << '\n';
         //and
         std::cout << *(2 + arr) << '\n';
+
+        //pointers as itinarator
+        std::array<int, 7> data{ 0, 1, 2, 3, 4, 5, 6 };
+        auto begin{ &data[0] };
+        // note that this points to one spot beyond the last element
+        auto end{ begin + std::size(data) };
+        
+        // for-loop with pointer
+        for (auto ptr{ begin }; ptr != end; ++ptr) // ++ to move to next element
+        {
+            std::cout << *ptr << ' '; // dereference to get value of current element
+        }
+        std::cout << '\n';
 
     }
 
