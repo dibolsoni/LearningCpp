@@ -176,6 +176,9 @@ namespace ArraySample
         for (std::size_t i{ 0 }; i < myArray.size(); ++i)
             std::cout << i << "-" << myArray[i] << ' ';
         std::cout << '\n';
+
+        
+
     }
 
     namespace StructArray
@@ -209,7 +212,7 @@ namespace ArraySample
             };
 
             //to make a cleaner syntax on init
-            // must use double {{}}
+            // must use double {{}} because Houses is a two_dimensional_array
             Houses array{{
                 {13, 4, 20},
                 { 14, 3, 10 },
@@ -222,6 +225,122 @@ namespace ArraySample
                             << " has "          << (house.stories * house.rooms_per_story)
                             << " rooms\n";
             };
+        }
+    }
+
+    namespace STD_Algorithms
+    {
+        void finder()
+        {
+            std::array arr{ 13, 90, 99, 5, 40, 80 };
+ 
+            std::cout << "Enter a value to search for and replace with: ";  
+            int search{};
+            int replace{};
+            std::cin >> search >> replace;
+            
+            // Input validation omitted
+            
+            // std::find returns an iterator pointing to the found element (or the end of the container)
+            // we'll store it in a variable, using type inference to deduce the type of
+            // the iterator (since we don't care)
+            auto found{ std::find(arr.begin(), arr.end(), search) };
+            
+            // Algorithms that don't find what they were looking for return the end iterator.
+            // We can access it by using the end() member function.
+            if (found == arr.end())
+            {
+                std::cout << "Could not find " << search << '\n';
+            }
+            else
+            {
+                // Override the found element.
+                *found = replace;
+            }
+            
+            for (int i : arr)
+            {
+                std::cout << i << ' ';
+            }
+            
+            std::cout << '\n';
+        }
+
+        bool contains(std::string_view array)
+        {
+            std::string_view item{"apple"};
+            // std::string_view::find returns std::string_view::npos if it doesn't find
+            // the substring. Otherwise it returns the index where the substring occurs
+            // in str.
+            return (array.find(item) != std::string_view::npos);
+        }
+    
+        void find_if()
+        {
+            std::array<std::string_view, 4> arr{ "apple", "banana", "walnut", "lemon" };
+             // Scan our array to see if any elements contains using a callback function
+            auto found{ std::find_if(arr.begin(), arr.end(), contains) };            
+            if (found == arr.end())
+                std::cout << "No nuts\n";
+            else
+                std::cout << "Found " << *found << '\n';
+        }
+
+        void count_if()
+        {
+            std::array<std::string_view, 5> arr{ "apple", "banana", "walnut", "lemon", "apple" };
+            auto apples{ std::count_if(arr.begin(), arr.end(), contains) };
+            std::cout << "Counted " << apples << " apple(s)\n";
+        }
+
+        bool greater(int a, int b)
+        {
+            // Order @a before @b if @a is greater than @b.
+            return (a > b);
+        }
+        
+        void sort_custom()
+        {
+            std::array arr{ 13, 90, 99, 5, 40, 80 };
+ 
+            // Pass greater to std::sort
+            // callback functions gets 2 params compared in greater(int,int)
+            std::sort(arr.begin(), arr.end(), greater);
+            
+            for (int i : arr)
+            {
+                std::cout << i << ' ';
+            }
+            
+            std::cout << '\n';
+        }
+
+        void double_number(int &i)
+        {
+            i *= 2;
+        }
+
+        void for_each()
+        {
+            std::array arr{1, 2, 3, 4};
+
+            //using a callback function with a ref to change the itinarator value
+            std::for_each(arr.begin(), arr.end(), double_number);
+            // std::ranges::for_each(arr, doubleNumber); // Since C++20, we don't have to use begin() and end().
+
+            for (int i : arr)
+                std::cout << i << " ";
+
+            std::cout << '\n';
+        }
+        
+        void caller()
+        {
+            // finder();
+            // find_if();
+            // count_if();
+            // sort_custom();
+            for_each();
         }
     }
 

@@ -13,6 +13,7 @@
 #include "References.cpp"
 #include <iostream>
 #include <bitset>
+#include "Vectors.cpp"
 
 void print_const(); 
 
@@ -57,9 +58,12 @@ int main()
 
     // ArraySample::dynamic_sorted_list();
     // ArraySample::std_array();
-    ArraySample::StructArray::caller();
+    // ArraySample::StructArray::caller();
+    ArraySample::STD_Algorithms::caller();
 
     // References::caller();
+    // Vectors::caller();
+
 
     return EXIT_SUCCESS; 
 }

@@ -1,7 +1,8 @@
 #vscode
 /.vscode/
 
-#compiler main
+#compiled main
+./main
 main
 
 # Prerequisites
