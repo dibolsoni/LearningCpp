@@ -5,6 +5,7 @@
 #include <string>
 #include <vector> 
 #include <type_traits>
+#include <iterator>
 
 namespace Chapter6
 {
@@ -111,5 +112,168 @@ namespace Chapter6
         }
     }
 
-    
+    namespace QuestionSix
+    {
+        enum Cards{
+            CARD_2,
+            CARD_3,
+            CARD_4,
+            CARD_5,
+            CARD_6,
+            CARD_7,
+            CARD_8,
+            CARD_9,
+            CARD_10,
+            CARD_JACK,
+            CARD_QUEEN,
+            CARD_KING,
+            CARD_ACE,
+            CARDS_MAX
+        };
+
+        enum Suits{
+            SUIT_CLUBS,
+            SUIT_DIAMONDS,
+            SUIT_HEARTS,
+            SUIT_SPADES,
+            SUITS_MAX
+        };
+
+        struct Card{
+            Cards rank;
+            Suits suit;
+        };
+
+
+
+        void print_card(const Card& card)
+        {
+
+            switch (card.rank)
+            {
+            case CARD_2:
+                std::cout << "2";
+                break;
+            case CARD_3:
+                std::cout << "3";
+                break;
+            case CARD_4:
+                std::cout << "4";
+                break;
+            case CARD_5:
+                std::cout << "5";
+                break;
+            case CARD_6:
+                std::cout << "6";
+                break;
+            case CARD_7:
+                std::cout << "7";
+                break;
+            case CARD_8:
+                std::cout << "8";
+                break;
+            case CARD_9:
+                std::cout << "9";
+                break;
+            case CARD_10:
+                std::cout << "10";
+                break;
+            case CARD_JACK:
+                std::cout << "J";
+                break;
+            case CARD_QUEEN:
+                std::cout << "Q";
+                break;
+            case CARD_KING:
+                std::cout << "K";
+                break;
+            case CARD_ACE:
+                std::cout << "A";
+                break;
+            };
+
+            switch (card.suit)
+            {
+            case SUIT_CLUBS:
+                std::cout << "C";
+                break;
+            case SUIT_DIAMONDS:
+                std::cout << "D";
+                break;
+            case SUIT_HEARTS:
+                std::cout << "H";
+                break;
+            case SUIT_SPADES:
+                std::cout << "S";
+                break;
+            };
+
+            std::cout << " ";
+        }
+
+        std::array<Card, 52> create_deck()
+        {
+            std::array<Card, 52> deck{};
+            std::size_t count{0};
+            for (std::size_t i{0}; i < Suits::SUITS_MAX; i++ )
+            {
+                for(std::size_t j{0}; j < Cards::CARDS_MAX; j++)
+                {
+                    deck[count].rank = static_cast<Cards>(j);
+                    deck[count].suit = static_cast<Suits>(i);
+                    std::cout << i << j << " ";
+                    count++;
+                    
+                };
+                std::cout << "\n";
+                // print_card(deck[i]);
+
+            };
+
+
+            return deck;
+        }
+
+        void print_deck(const std::array<Card, 52>& deck)
+        {
+                for(auto& card: deck)
+                    print_card(card);
+
+                std::cout << '\n';
+        }
+
+        int getCardValue(const Card& card)
+        {
+            switch (card.rank)
+            {
+            case Cards::CARD_JACK:
+            case Cards::CARD_QUEEN:
+            case Cards::CARD_KING:
+                return 10;
+                break;
+            case Cards::CARD_ACE:
+                return 11;
+                break;
+            
+            default:
+                return 2;
+                break;
+            }
+        }
+
+        void caller()
+        {
+            std::array<Card, 52> deck{create_deck()};
+            print_deck(deck);
+
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(deck.begin(),deck.end(),g);
+            print_deck(deck);
+
+            print_card(deck[5]);
+            std::cout << " worth: " << getCardValue(deck[5]);
+            std::cout << '\n';
+        }
+    }
 }

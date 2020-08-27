@@ -67,7 +67,9 @@ int main()
 
     // Chapter6::QuestionOne::caller();
     // Chapter6::QuestionThree::caller();
-    Chapter6::QuestionFour::caller();
+    // Chapter6::QuestionFour::caller();
+    // Chapter6::QuestionFive::caller();
+    Chapter6::QuestionSix::caller();
 
     return EXIT_SUCCESS; 
 }
