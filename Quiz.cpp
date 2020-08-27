@@ -4,6 +4,7 @@
 #include <string_view>
 #include <string>
 #include <vector> 
+#include <type_traits>
 
 namespace Chapter6
 {
@@ -94,4 +95,21 @@ namespace Chapter6
 
         }
     }
+
+    namespace QuestionFour
+    {
+        void print_c_string(const char* str)
+        {
+            while(*str)
+                std::cout << *str++ << '\n';
+            
+        }
+        void caller()
+        {
+            print_c_string("Hello World!");
+            std::cout<< '\n';
+        }
+    }
+
+    
 }
