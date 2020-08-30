@@ -15,6 +15,7 @@
 #include <bitset>
 #include "Vectors.cpp"
 #include "Quiz.cpp"
+#include "playground.cpp"
 
 void print_const(); 
 
@@ -69,7 +70,10 @@ int main()
     // Chapter6::QuestionThree::caller();
     // Chapter6::QuestionFour::caller();
     // Chapter6::QuestionFive::caller();
-    Chapter6::QuestionSix::caller();
+    // Chapter6::QuestionSix::caller();
+    Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
+
+    // Playground::caller();
 
     return EXIT_SUCCESS; 
 }

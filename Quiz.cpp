@@ -6,6 +6,9 @@
 #include <vector> 
 #include <type_traits>
 #include <iterator>
+#include <cstdlib>
+#include "effolkronium/random.hpp"
+// #include "random.hpp"
 
 namespace Chapter6
 {
@@ -139,10 +142,18 @@ namespace Chapter6
             SUITS_MAX
         };
 
+        enum MenuOption{
+            MENU_QUIT,
+            MENU_STAND,
+            MENU_HIT,
+            MAX_MENU
+        };
+
         struct Card{
             Cards rank;
             Suits suit;
         };
+
 
 
 
@@ -210,6 +221,7 @@ namespace Chapter6
 
             std::cout << " ";
         }
+        
 
         std::array<Card, 52> create_deck()
         {
@@ -240,6 +252,14 @@ namespace Chapter6
                     print_card(card);
 
                 std::cout << '\n';
+        }
+        void print_deck(const std::vector<Card>& deck)
+        {
+            for (auto& card: deck)
+            {
+                print_card(card);
+            }
+            std::cout << '\n';
         }
 
         int getCardValue(const Card& card)
@@ -274,6 +294,179 @@ namespace Chapter6
             print_card(deck[5]);
             std::cout << " worth: " << getCardValue(deck[5]);
             std::cout << '\n';
+        }
+    }
+
+    namespace QuestionSeven
+    {   
+        using Card = QuestionSix::Card;
+        struct Player{
+            std::string name;
+            std::vector<Card> cards;
+        };
+
+        void print_cards(std::vector<Card> cards)
+        {   
+            for (const auto& card: cards)
+            {
+                QuestionSix::print_card(card);
+            }
+        }
+
+        /**
+         * get a random card from a game_deck
+         * @returns Card
+        */
+        Card get_card(std::vector<Card>& deck)
+        {
+            using Random = effolkronium::random_static;
+            std::size_t random_card_id = 
+                static_cast<std::size_t>(
+                    Random::get(0, static_cast<int>(deck.size())
+                )
+            );
+            Card card = deck[random_card_id]; 
+            deck.erase(deck.begin() + random_card_id);
+            return card;
+        }
+
+        void get_cards_for_players(std::vector<Card>& deck, std::array<Player, 2>& players, size_t num_cards)
+        {
+        
+            for (auto& player: players)
+                for (size_t i{0}; i < num_cards; i++)
+                {
+                    if (player.name == players[i].name && num_cards > 1)
+                        i++;
+                    player.cards.push_back(get_card(deck));
+                }
+        }
+
+
+        QuestionSix::MenuOption get_menu_option()
+        {
+            unsigned int menu_option = 3;
+            std::cout << "The cards are on table. \n";
+            std::cout << "What do you wanna to do?. \n";
+            std::cout << "press 1 - to stand \n";
+            std::cout << "press 2 - to hit \n";
+            std::cout << "press 0 - to quit \n";
+            std::cin >> menu_option;
+            return static_cast<QuestionSix::MenuOption>(menu_option);
+        }
+
+        void action(QuestionSix::MenuOption menu_option, Player &player, std::vector<Card> &deck, bool& stand)
+        {
+            switch (menu_option)
+            {
+            case QuestionSix::MenuOption::MENU_STAND:
+                std::cout << player.name << " choosed to stand. \n";
+                stand = true;
+                break;
+            case QuestionSix::MenuOption::MENU_HIT:
+                std::cout << player.name << " choosed to hit. \n";
+                player.cards.push_back(get_card(deck));
+                break; 
+            case QuestionSix::MenuOption::MENU_QUIT:
+                stand = true;
+                return;
+
+            
+            default:
+                std::cerr << "Type a valid menu option \n";
+                break;
+            }
+            
+        }
+
+        unsigned int sum_card_values(std::vector<Card> cards)
+        {
+            unsigned int cards_value{0};
+            unsigned int aces{0};
+            for (auto& card : cards)
+            {
+                if (card.rank == QuestionSix::Cards::CARD_ACE)
+                    aces += 10;
+                cards_value += QuestionSix::getCardValue(card);
+                if (cards_value > 21)
+                    cards_value -= aces;
+            }
+            return cards_value;
+        }
+
+        QuestionSix::MenuOption get_ai_option(Player dealer)
+        {
+            unsigned int cards_value{sum_card_values(dealer.cards)};
+            if (cards_value < 17)
+                return QuestionSix::MenuOption::MENU_HIT;
+            else 
+                return QuestionSix::MenuOption::MENU_STAND;
+        }
+
+
+        void print_game(std::array<Player, 2>& players)
+        {
+
+            for(std::size_t i{0}; i < players.size(); i++)
+            {
+                std::cout << players[i].name << " has ";
+                print_cards(players[i].cards);
+                std::cout << " cards\ ";
+                std::cout << " - the sum is: " << sum_card_values(players[i].cards) << '\n';
+            }
+        }
+
+        bool play_black_jack(std::array<Card,52> deck)
+        {
+            std::vector<Card> game_deck(deck.begin(), deck.end());
+            std::cout << "GAME STARTED" << '\n';
+            
+            std::array<Player,2> players{{
+                {"Dealer", {}},
+                {"Player", {}}
+            }};
+            std::cout << "deck size: " << game_deck.size() << '\n'; 
+            QuestionSix::print_deck(game_deck);
+
+            get_cards_for_players(game_deck, players, 2);
+
+            bool player_stands = false;
+            bool dealer_stands = false; 
+            while(dealer_stands == false || player_stands == false)
+            {
+                system("clear");
+                print_game(players);
+                if (!player_stands)
+                    action(get_menu_option(),players[1],game_deck, player_stands);
+                if(sum_card_values(players[1].cards) > 21)
+                {
+                    print_game(players);
+                    std::cout << players[1].name <<" did more then 21 points. \n";
+                    std::cout << players[1].name <<" lose. \n";
+                    return false;
+                }
+                action(get_ai_option(players[0]),players[0],game_deck, dealer_stands);
+                if(sum_card_values(players[0].cards) > 21)
+                {
+                    print_game(players);
+                    std::cout << players[0].name <<" did more then 21 points. \n";
+                    std::cout << players[0].name <<" lose. \n";
+                    return true;
+                }
+
+            }
+
+            print_game(players);
+            if (sum_card_values(players[0].cards) > sum_card_values(players[1].cards))
+            {
+                std::cout << players[0].name << " wins the game! \n";
+                return false;
+            }
+            else
+            {
+                std::cout << players[1].name << "wins the game! \n";
+                return true;       
+            }
         }
     }
 }
