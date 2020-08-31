@@ -20,6 +20,14 @@ namespace Vectors
         printLength(array);
         array.resize(3); // okay, array length is now 3
         printLength(array);
+
+
+        std::vector<int> array2{};
+        array2 = { 0, 1, 2, 3, 4 }; // okay, array2 length = 5
+        std::cout << "length: " << array2.size() << "  capacity: " << array2.capacity() << '\n';
+        
+        array2 = { 9, 8, 7 }; // okay, array2 length is now 3!
+        std::cout << "length: " << array2.size() << "  capacity: " << array2.capacity() << '\n';
       
     }
 
