@@ -14,79 +14,94 @@
 // #include "Vectors.cpp"
 // #include "Quiz.cpp"
 // #include "playground.cpp"
-#include "Functions.cpp"
+// #include "Functions.cpp"
+// #include "HeapAndStack.cpp"
+// #include "Test.cpp"
+#include "CommandLine.cpp"
+
 #include <iostream>
 #include <bitset>
-#include "HeapAndStack.cpp"
-#include "Test.cpp"
+
 
 void print_const(); 
 
 // reference https://en.cppreference.com/w/
 
-int main()
-{
+// int main()
+// {
 
-    // Math::print_sum();
-    // bit_masks();
-    //bit_mask_exercise();
-    //binaries_count(10);
-    // Math::converts();
+//     // Math::print_sum();
+//     // bit_masks();
+//     //bit_mask_exercise();
+//     //binaries_count(10);
+//     // Math::converts();
 
-    // Namespace::question_one();
-    // Namespace::question_two();
-    // Namespace::question_three();
+//     // Namespace::question_one();
+//     // Namespace::question_two();
+//     // Namespace::question_three();
 
-    // String::string_view();
+//     // String::string_view();
 
-    // Enum::getEnum();
+//     // Enum::getEnum();
 
-    // Struct::question_one();
-    // Struct::question_two();
+//     // Struct::question_one();
+//     // Struct::question_two();
 
-    //IfStatement::init_statement();
+//     //IfStatement::init_statement();
     
-    // int result = SwitchStatement::question_one_calculate(4,2,'p');
-    // std::cout << "result is " << result << "\n";
+//     // int result = SwitchStatement::question_one_calculate(4,2,'p');
+//     // std::cout << "result is " << result << "\n";
 
-    // SwitchStatement::question_two::printNumOfLegsCaller();
+//     // SwitchStatement::question_two::printNumOfLegsCaller();
 
-    // Random::randomUsingEffolkronium();
+//     // Random::randomUsingEffolkronium();
 
-    // ArraySample::copy_array();
+//     // ArraySample::copy_array();
 
-    // Pointers::print_address_and_value();
-    // Pointers::getVowels();
-    // Pointers::itinarating_an_array();
-    // Pointers::Question_two::caller();
-    // Pointers::VoidPointers::caller();
+//     // Pointers::print_address_and_value();
+//     // Pointers::getVowels();
+//     // Pointers::itinarating_an_array();
+//     // Pointers::Question_two::caller();
+//     // Pointers::VoidPointers::caller();
 
-    // ArraySample::dynamic_sorted_list();
-    // ArraySample::std_array();
-    // ArraySample::StructArray::caller();
-    // ArraySample::STD_Algorithms::caller();
+//     // ArraySample::dynamic_sorted_list();
+//     // ArraySample::std_array();
+//     // ArraySample::StructArray::caller();
+//     // ArraySample::STD_Algorithms::caller();
 
-    // References::caller();
-    // Vectors::caller();
+//     // References::caller();
+//     // Vectors::caller();
 
-    // Chapter6::QuestionOne::caller();
-    // Chapter6::QuestionThree::caller();
-    // Chapter6::QuestionFour::caller();
-    // Chapter6::QuestionFive::caller();
-    // Chapter6::QuestionSix::caller();
-    // Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
+//     // Chapter6::QuestionOne::caller();
+//     // Chapter6::QuestionThree::caller();
+//     // Chapter6::QuestionFour::caller();
+//     // Chapter6::QuestionFive::caller();
+//     // Chapter6::QuestionSix::caller();
+//     // Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
 
-    // Playground::caller();
+//     // Playground::caller();
 
-    // Functions::caller();
+//     // Functions::caller();
 
-    // TheStack::caller();
+//     // TheStack::caller();
 
-    Test::caller();
+//     // Test::caller();
 
 
 
-    return EXIT_SUCCESS; 
+
+
+//     return EXIT_SUCCESS; 
+// }
+
+//using argument lines main
+//argc = Arguments Counter
+//argv = Arguments Values
+int main(int argc, char *argv[])
+{
+    CommandLine::caller(argc, argv);
+ 
+    return 0;
 }
 
 
