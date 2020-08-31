@@ -1,21 +1,22 @@
-#include "Math.h"
+// #include "Math.h"
 #include "Constants.h"
-#include "Binaries.cpp"
-#include "Namespace.cpp"
-#include "String.cpp"
-#include "Enums.cpp"
-#include "Struct.cpp"
-#include "SwitchStatement.cpp"
-#include "IfStatement.cpp"
-#include "Random.cpp"
-#include "ArraySamples.cpp"
-#include "Pointers.cpp"
-#include "References.cpp"
+// #include "Binaries.cpp"
+// #include "Namespace.cpp"
+// #include "String.cpp"
+// #include "Enums.cpp"
+// #include "Struct.cpp"
+// #include "SwitchStatement.cpp"
+// #include "IfStatement.cpp"
+// #include "Random.cpp"
+// #include "ArraySamples.cpp"
+// #include "Pointers.cpp"
+// #include "References.cpp"
+// #include "Vectors.cpp"
+// #include "Quiz.cpp"
+// #include "playground.cpp"
+#include "ReturnTypes.cpp"
 #include <iostream>
 #include <bitset>
-#include "Vectors.cpp"
-#include "Quiz.cpp"
-#include "playground.cpp"
 
 void print_const(); 
 
@@ -71,9 +72,11 @@ int main()
     // Chapter6::QuestionFour::caller();
     // Chapter6::QuestionFive::caller();
     // Chapter6::QuestionSix::caller();
-    Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
+    // Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
 
     // Playground::caller();
+
+    ReturnTypes::caller();
 
     return EXIT_SUCCESS; 
 }

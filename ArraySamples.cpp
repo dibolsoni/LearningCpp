@@ -4,7 +4,7 @@
 #include <algorithm> //std::sort
 #include <iterator> //std::size
 #include <cstring> // for strcpy
-
+#include <tuple>
 
 namespace ArraySample
 {
@@ -333,6 +333,21 @@ namespace ArraySample
 
             std::cout << '\n';
         }
+
+        std::tuple<int, double> returnTuple() // return a tuple that contains an int and a double
+        {
+            return { 5, 6.7 };
+        }
+
+        
+        
+        void tuple_caller()
+        {
+            std::tuple s{ returnTuple() }; // get our tuple
+            std::cout << std::get<0>(s) << ' ' << std::get<1>(s) << '\n'; // use std::get<n> to get the nth element of the tuple
+        
+        }
+
         
         void caller()
         {
