@@ -18,6 +18,7 @@
 #include <iostream>
 #include <bitset>
 #include "HeapAndStack.cpp"
+#include "Test.cpp"
 
 void print_const(); 
 
@@ -78,6 +79,10 @@ int main()
     // Playground::caller();
 
     // Functions::caller();
+
+    // TheStack::caller();
+
+    Test::caller();
 
 
 
