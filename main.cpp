@@ -14,9 +14,10 @@
 // #include "Vectors.cpp"
 // #include "Quiz.cpp"
 // #include "playground.cpp"
-#include "ReturnTypes.cpp"
+#include "Functions.cpp"
 #include <iostream>
 #include <bitset>
+#include "HeapAndStack.cpp"
 
 void print_const(); 
 
@@ -76,7 +77,9 @@ int main()
 
     // Playground::caller();
 
-    ReturnTypes::caller();
+    // Functions::caller();
+
+
 
     return EXIT_SUCCESS; 
 }
