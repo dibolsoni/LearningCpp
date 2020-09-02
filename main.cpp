@@ -19,6 +19,7 @@
 // #include "Test.cpp"
 // #include "CommandLine.cpp"
 // #include "Lambdas.cpp"
+#include "Classes.cpp"
 
 #include <iostream>
 #include <bitset>
@@ -80,7 +81,7 @@ int main()
     // Chapter6::QuestionSix::caller();
     // Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
 
-    Chapter7::BinarySearch::caller();
+    // Chapter7::BinarySearch::caller();
 
     // Playground::caller();
 
@@ -90,8 +91,9 @@ int main()
 
     // Test::caller();
 
-
     // Lambdas::caller();
+
+    ClassesBasic::SimpleStack::caller();
 
 
     return EXIT_SUCCESS; 
