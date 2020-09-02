@@ -93,7 +93,11 @@ int main()
 
     // Lambdas::caller();
 
-    ClassesBasic::SimpleStack::caller();
+    // ClassesBasic::SimpleStack::caller();
+    // ClassesBasic::QuizBall::caller();
+    // ClassesBasic::QuizRGBA::caller();
+    // ClassesBasic::Destructor::caller();
+    ClassesBasic::Quiz3d::main();
 
 
     return EXIT_SUCCESS; 
