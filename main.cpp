@@ -12,13 +12,13 @@
 // #include "Pointers.cpp"
 // #include "References.cpp"
 // #include "Vectors.cpp"
-// #include "Quiz.cpp"
-// #include "playground.cpp"
+#include "Quiz.cpp"
+#include "playground.cpp"
 // #include "Functions.cpp"
 // #include "HeapAndStack.cpp"
 // #include "Test.cpp"
 // #include "CommandLine.cpp"
-#include "Lambdas.cpp"
+// #include "Lambdas.cpp"
 
 #include <iostream>
 #include <bitset>
@@ -80,6 +80,8 @@ int main()
     // Chapter6::QuestionSix::caller();
     // Chapter6::QuestionSeven::play_black_jack(Chapter6::QuestionSix::create_deck());
 
+    Chapter7::BinarySearch::caller();
+
     // Playground::caller();
 
     // Functions::caller();
@@ -89,7 +91,7 @@ int main()
     // Test::caller();
 
 
-    Lambdas::caller();
+    // Lambdas::caller();
 
 
     return EXIT_SUCCESS; 

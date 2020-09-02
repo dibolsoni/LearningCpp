@@ -10,6 +10,8 @@
 #include "effolkronium/random.hpp"
 // #include "random.hpp"
 
+// #define DEBUG 
+
 namespace Chapter6
 {
     void print_array(const std::vector<int>& array)
@@ -467,6 +469,54 @@ namespace Chapter6
                 std::cout << players[1].name << "wins the game! \n";
                 return true;       
             }
+        }
+    }
+}
+
+namespace Chapter7
+{
+    namespace BinarySearch
+    {
+        // array is the array to search over.
+        // target is the value we're trying to determine exists or not.
+        // min is the index of the lower bounds of the array we're searching.
+        // max is the index of the upper bounds of the array we're searching.
+        // binarySearch() should return the index of the target element if the target is found, -1 otherwise
+
+        int binarySearch(const int *array, int target, int min, int max)
+        {
+            assert(array); // make sure array exists
+
+            int mid = { min + ((max-min) / 2) };
+            static int called{0};
+
+            #ifdef DEBUG
+            std::cout << called <<  " calling: " << '\n';
+            std::cout << "target: " << target <<'\n';
+            std::cout << "min: " << min << '\n'; 
+            std::cout << "max: " << max << '\n';
+            std::cout << "mid: " << mid << '\n';
+            #endif
+
+            if (min > max)
+                return -1;
+
+            called++;
+            if (array[mid] > target)
+            {
+                binarySearch(array, target, min, mid - 1);
+            }
+            else 
+            {
+                binarySearch(array, target, mid + 1, max);
+            }
+        }
+        
+        void caller()
+        {
+            std::array<int, 9> array{ 3, 6, 7, 9, 12, 15, 18, 21, 24 };
+            int target = 10;
+            std::cout << binarySearch(array.begin(), target, 0, array.size()) << "\n";
         }
     }
 }
