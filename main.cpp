@@ -12,15 +12,18 @@
 // #include "Pointers.cpp"
 // #include "References.cpp"
 // #include "Vectors.cpp"
-#include "Quiz.cpp"
-#include "playground.cpp"
+// #include "Quiz.cpp"
+// #include "playground.cpp"
 // #include "Functions.cpp"
 // #include "HeapAndStack.cpp"
 // #include "Test.cpp"
 // #include "CommandLine.cpp"
 // #include "Lambdas.cpp"
-#include "Classes.cpp"
+// #include "Classes.cpp"
+#include "MonsterGenerator/main.cpp"
 
+
+#include "Timer.cpp"
 #include <iostream>
 #include <bitset>
 
@@ -31,6 +34,8 @@ void print_const();
 
 int main()
 {
+    Timer t;
+    std::cout << "Starting a new program seconds\n\n";
 
     // Math::print_sum();
     // bit_masks();
@@ -97,9 +102,12 @@ int main()
     // ClassesBasic::QuizBall::caller();
     // ClassesBasic::QuizRGBA::caller();
     // ClassesBasic::Destructor::caller();
-    ClassesBasic::Quiz3d::main();
+    // ClassesBasic::Quiz3d::main();
+    // ClassesBasic::AnonymousObjects::caller();
 
+    MonsterClass::main();
 
+    std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS; 
 }
 
