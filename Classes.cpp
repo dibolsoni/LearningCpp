@@ -339,6 +339,7 @@ namespace ClassesBasic
             int denominator{};
 
             public:
+            Fraction(){reducer();}
             Fraction(int num, int den)
                 :numerator{num}, denominator{den}
             {reducer();}
@@ -384,6 +385,19 @@ namespace ClassesBasic
             {
                 std::cout << numerator << "/" << denominator << '\n';
             }
+
+            //using << custom operand
+            friend void operator<<(std::ostream &out, const Fraction &f)
+            {
+                out << f.numerator << "/" << f.denominator << '\n';
+            }
+
+            //using >> to custom in operand
+            friend void operator>>(std::istream &in, Fraction &f)
+            {
+                in >> f.numerator;
+                in >> f.denominator;
+            }
         };
 
         void caller()
@@ -405,6 +419,13 @@ namespace ClassesBasic
         
             Fraction f6{ Fraction{1, 2} * Fraction{2, 3} * Fraction{3, 4} };
             f6.print();
+            std::cout << f6;
+
+            std::cout << "Type a numerator and denominator. numbers only separed by a space";
+            Fraction f7;
+            std::cin >> f7;
+            f7.print();
+
         }
     }
 
