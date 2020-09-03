@@ -19,8 +19,8 @@
 // #include "Test.cpp"
 // #include "CommandLine.cpp"
 // #include "Lambdas.cpp"
-// #include "Classes.cpp"
-#include "MonsterGenerator/main.cpp"
+#include "Classes.cpp"
+// #include "MonsterGenerator/main.cpp"
 
 
 #include "Timer.cpp"
@@ -105,7 +105,9 @@ int main()
     // ClassesBasic::Quiz3d::main();
     // ClassesBasic::AnonymousObjects::caller();
 
-    MonsterClass::main();
+    // MonsterClass::main();
+
+    ClassesBasic::OverloadingOperators::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS; 

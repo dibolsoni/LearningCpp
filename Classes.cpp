@@ -331,5 +331,82 @@ namespace ClassesBasic
         }
     }
 
+    namespace OverloadingOperators
+    {
+        class Fraction
+        {
+            int numerator{};
+            int denominator{};
+
+            public:
+            Fraction(int num, int den)
+                :numerator{num}, denominator{den}
+            {reducer();}
+
+
+            static int gcd(int a, int b)
+            {
+                // std::cout << "a:" << a << "b:" << b << '\n';
+                return (b == 0) ? (a > 0 ? a : -a) : gcd(b, a % b);
+            }
+
+            void reducer()
+            {
+                if (numerator != 0 && denominator != 0)
+                {
+                    int gcd{ Fraction::gcd(numerator, denominator) };
+                    numerator /= gcd;
+                    denominator /= gcd;
+                }
+            }
+
+            friend Fraction operator*(const int n, const Fraction f)
+            {
+                int num = f.numerator * n;
+                return { num, f.denominator };
+            }
+
+            friend Fraction operator*(const Fraction f, const int n)
+            {
+                int num = f.numerator * n;
+                return { num, f.denominator };
+            }
+
+            friend Fraction operator*(const Fraction fx, const Fraction fy)
+            {
+                int num = fx.numerator * fx.numerator;
+                int den = fx.denominator * fx.denominator;
+                return { num, den };
+            }
+
+
+            void print() const
+            {
+                std::cout << numerator << "/" << denominator << '\n';
+            }
+        };
+
+        void caller()
+        {
+            Fraction f1{2, 5};
+            f1.print();
+        
+            Fraction f2{3, 8};
+            f2.print();
+        
+            Fraction f3{ f1 * f2 };
+            f3.print();
+        
+            Fraction f4{ f1 * 2 };
+            f4.print();
+        
+            Fraction f5{ 2 * f2 };
+            f5.print();
+        
+            Fraction f6{ Fraction{1, 2} * Fraction{2, 3} * Fraction{3, 4} };
+            f6.print();
+        }
+    }
+
 
 }
