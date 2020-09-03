@@ -361,6 +361,11 @@ namespace ClassesBasic
                 }
             }
 
+            Fraction operator+(int n)
+            {
+                return Fraction{this->numerator + (this->denominator * n), this->denominator};
+            }
+
             friend Fraction operator*(const int n, const Fraction f)
             {
                 int num = f.numerator * n;
@@ -425,6 +430,9 @@ namespace ClassesBasic
             Fraction f7;
             std::cin >> f7;
             f7.print();
+
+            f6 = f6 + 10;
+            f6.print();
 
         }
     }
