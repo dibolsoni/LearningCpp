@@ -342,7 +342,30 @@ namespace ClassesBasic
             Fraction(){reducer();}
             Fraction(int num, int den)
                 :numerator{num}, denominator{den}
-            {reducer();}
+            {
+                assert(den != 0);
+                reducer();
+            }
+            ~Fraction()
+            {
+                // delete this->numerator;
+                // delete this->denominator;
+            }
+
+            //custom assignment operator for dynamic alocation
+            Fraction& operator= (const Fraction &fraction)
+            {
+                // self-assignment guard
+                if (this == &fraction)
+                    return *this;
+            
+                // do the copy
+                this->numerator = fraction.numerator; // can handle self-assignment
+                this->denominator = fraction.denominator; // can handle self-assignment
+            
+                // return the existing object so we can chain this operator
+                return *this;
+            }
 
 
             static int gcd(int a, int b)
@@ -366,6 +389,11 @@ namespace ClassesBasic
                 return Fraction{this->numerator + (this->denominator * n), this->denominator};
             }
 
+            inline operator double() const 
+            { 
+                return (static_cast<double>(this->numerator)/static_cast<double>(this->denominator));
+            }
+
             friend Fraction operator*(const int n, const Fraction f)
             {
                 int num = f.numerator * n;
@@ -383,6 +411,17 @@ namespace ClassesBasic
                 int num = fx.numerator * fx.numerator;
                 int den = fx.denominator * fx.denominator;
                 return { num, den };
+            }
+
+            friend bool operator==(const Fraction fx, const Fraction fy)
+            {
+                return (fx.denominator == fy.denominator
+                        && fx.numerator == fx.numerator);
+            }
+
+            friend bool operator!=(const Fraction fx, const Fraction fy)
+            {
+                return !(fx == fy);
             }
 
 
@@ -404,6 +443,11 @@ namespace ClassesBasic
                 in >> f.denominator;
             }
         };
+
+        void printDouble(double num)
+        {
+            std::cout << "the fraction in double is: " << num << '\n';
+        }
 
         void caller()
         {
@@ -434,6 +478,14 @@ namespace ClassesBasic
             f6 = f6 + 10;
             f6.print();
 
+            
+            if (f6 == f7)
+                std::cout << "equal \n";
+            else
+                std::cout << "not equal \n";
+
+            Fraction f10{1,3};
+            printDouble(f10);
         }
     }
 
