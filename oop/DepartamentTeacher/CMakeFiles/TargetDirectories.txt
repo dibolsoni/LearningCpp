@@ -1,3 +1,0 @@
-/home/beca/Documents/LeaningCpp/LearningCpp/oop/DepartamentTeacher/CMakeFiles/rebuild_cache.dir
-/home/beca/Documents/LeaningCpp/LearningCpp/oop/DepartamentTeacher/CMakeFiles/edit_cache.dir
-/home/beca/Documents/LeaningCpp/LearningCpp/oop/DepartamentTeacher/CMakeFiles/DepartmentTeacher.dir

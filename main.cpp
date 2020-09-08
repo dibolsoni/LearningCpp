@@ -21,6 +21,7 @@
 // #include "Lambdas.cpp"
 #include "Classes.cpp"
 // #include "MonsterGenerator/main.cpp"
+#include "InitializerList.cpp"
 
 
 #include "Timer.cpp"
@@ -107,7 +108,9 @@ int main()
 
     // MonsterClass::main();
 
-    ClassesBasic::OverloadingOperators::caller();
+    // ClassesBasic::OverloadingOperators::caller();
+
+    InitializerList::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS; 
