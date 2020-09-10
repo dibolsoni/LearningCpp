@@ -1,8 +1,8 @@
 // #include "Cow.h"
 // #include "Cat.h"
 // #include "Dog.h"
-// #include "VirtualClass.cpp"
-#include "WithoutVirtualClass.cpp"
+#include "VirtualClass.cpp"
+// #include "WithoutVirtualClass.cpp"
 #include <iostream>
 
 
@@ -23,6 +23,11 @@
 int main()
 {
     Copier copier(1, 2, 3);
+    PoweredDevice &ref_pd{copier};
+
+    std::cout << copier.c_name << "\n";
+    std::cout << ref_pd.p_name << "\n";
+
  
     return 0;
 }

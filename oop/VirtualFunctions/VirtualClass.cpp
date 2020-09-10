@@ -1,9 +1,13 @@
 #include <iostream>
+
+#include <string>
  
 class PoweredDevice
 {
 public:
+    std::string p_name;
     PoweredDevice(int power)
+        : p_name{"PoweredDevice"}
     {
 		std::cout << "PoweredDevice: " << power << '\n';
     }
@@ -32,9 +36,10 @@ public:
 class Copier: public Scanner, public Printer
 {
 public:
+    std::string c_name;
     Copier(int scanner, int printer, int power)
         : PoweredDevice(power), // PoweredDevice is constructed here
-        Scanner(scanner, power), Printer(printer, power)
+        Scanner(scanner, power), Printer(printer, power), c_name{"copier"}
     {
     }
 };
