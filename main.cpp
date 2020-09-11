@@ -113,7 +113,10 @@ int main()
 
     // InitializerList::caller();
 
-    Template::caller();
+    // Template::caller();
+    Template::templateClass();
+    Template::Quiz::questonTwoCaller();
+    Template::Quiz::questonThreeCaller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;
