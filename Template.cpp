@@ -19,6 +19,25 @@ namespace Template
     {
         return (x > y) ? x : y;
     }
+	
+    class Cents
+    {
+    private:
+        int m_cents;
+    public:
+        Cents(int cents)
+            : m_cents{ cents }
+        {
+        }
+
+        inline int getCents() const {return m_cents;}
+
+        //must overload the operator > to work with templates    
+        friend bool operator>(const Cents &c1, const Cents &c2)
+        {
+            return (c1.m_cents > c2.m_cents);
+        }
+    };
 
     int caller()
     {
@@ -31,6 +50,9 @@ namespace Template
         char c = max('a', '6');
         std::cout << c << '\n';
 
+        Cents cents = max(Cents{1}, Cents{3});
+        std::cout << cents.getCents() << '\n';
+
         return 0;
     }
-}
+    }
