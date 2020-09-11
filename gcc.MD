@@ -8,17 +8,20 @@ use the -I option to specify an alternate include directory.
 # FLAGS
 
 Remove compiler extensions
--pedantic-errors
+<code>-pedantic-errors</code>
 
 Warning and error levels
--Wall -Weffc++ -Wextra -Wsign-conversion
+<code>-Wall -Weffc++ -Wextra -Wsign-conversion</code>
 
 Setting a language standart
--std=c++11, -std=c++14, -std=c++17, or -std=c++2a to enable C++11/14/17/2a support respectively.
+<code>-std=c++11, -std=c++14, -std=c++17, or -std=c++2a to enable C++11/14/17/2a support respectively.</code>
+
+C++ standart library explicit linking (must be after target "main.cpp")
+<code>-lstdc++</code>
 
 All Flags
 
-<code> g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -std=c++2a main.cpp -o main </code>
+<code> g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -std=c++2a main.cpp -lstdc++ -o main </code>
 
 
 
