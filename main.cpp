@@ -1,5 +1,5 @@
 // #include "Math.h"
-#include "Constants.h"
+// #include "Constants.h"
 // #include "Binaries.cpp"
 // #include "Namespace.cpp"
 // #include "String.cpp"
@@ -19,9 +19,10 @@
 // #include "Test.cpp"
 // #include "CommandLine.cpp"
 // #include "Lambdas.cpp"
-#include "Classes.cpp"
+// #include "Classes.cpp"
 // #include "MonsterGenerator/main.cpp"
-#include "InitializerList.cpp"
+// #include "InitializerList.cpp"
+#include "Template.cpp"
 
 
 #include "Timer.cpp"
@@ -29,7 +30,7 @@
 #include <bitset>
 
 
-void print_const(); 
+void print_const();
 
 // reference https://en.cppreference.com/w/
 
@@ -56,7 +57,7 @@ int main()
     // Struct::question_two();
 
     //IfStatement::init_statement();
-    
+
     // int result = SwitchStatement::question_one_calculate(4,2,'p');
     // std::cout << "result is " << result << "\n";
 
@@ -110,10 +111,12 @@ int main()
 
     // ClassesBasic::OverloadingOperators::caller();
 
-    InitializerList::caller();
+    // InitializerList::caller();
+
+    Template::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
-    return EXIT_SUCCESS; 
+    return EXIT_SUCCESS;
 }
 
 //using argument lines main
@@ -122,7 +125,7 @@ int main()
 // int main(int argc, char *argv[])
 // {
 //     CommandLine::caller(argc, argv);
- 
+
 //     return 0;
 // }
 
@@ -130,10 +133,10 @@ int main()
 
 
 
-void print_const() 
-{
-    std::cout << "value:" << constants::pi << "\tsize:" << sizeof(constants::pi)<<"\n";
-    std::cout << "value:" << constants::pi2 << "\tsize:" << sizeof(constants::pi2)<<"\n";
-    std::cout << "value:" << constants::days_per_week << "\tsize:" << sizeof(constants::days_per_week)<<"\n";
-    std::cout << "value:" << constants::days_per_week2 << "\tsize:" << sizeof(constants::days_per_week2)<<"\n";
-}
+// void print_const()
+// {
+//     std::cout << "value:" << constants::pi << "\tsize:" << sizeof(constants::pi)<<"\n";
+//     std::cout << "value:" << constants::pi2 << "\tsize:" << sizeof(constants::pi2)<<"\n";
+//     std::cout << "value:" << constants::days_per_week << "\tsize:" << sizeof(constants::days_per_week)<<"\n";
+//     std::cout << "value:" << constants::days_per_week2 << "\tsize:" << sizeof(constants::days_per_week2)<<"\n";
+// }
