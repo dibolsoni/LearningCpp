@@ -22,7 +22,8 @@
 // #include "Classes.cpp"
 // #include "MonsterGenerator/main.cpp"
 // #include "InitializerList.cpp"
-#include "Template.cpp"
+// #include "Template.cpp"
+#include "TryCatch.cpp"
 
 
 #include "Timer.cpp"
@@ -114,9 +115,11 @@ int main()
     // InitializerList::caller();
 
     // Template::caller();
-    Template::templateClass();
-    Template::Quiz::questonTwoCaller();
-    Template::Quiz::questonThreeCaller();
+    // Template::templateClass();
+    // Template::Quiz::questonTwoCaller();
+    // Template::Quiz::questonThreeCaller();
+
+    TryCatch::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;
