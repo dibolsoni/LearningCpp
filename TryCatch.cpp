@@ -62,5 +62,9 @@ namespace TryCatch
             std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
             // std::cerr << "Error num:" << exception.getId() << "\n";
         }
+        catch (...)
+        {
+            std::cerr << "An undefined error occurs\n";
+        }
     }
 }
