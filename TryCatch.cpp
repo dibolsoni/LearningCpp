@@ -39,13 +39,11 @@ namespace TryCatch
 
     class ErrorsId: public ArrayException
     {
-        unsigned int id;
     public:
         ErrorsId(std::string error)
             : ArrayException(error)
-        {id = 1;}
+        {}
 
-        inline const unsigned int getId() const {return id;}
 
     };
     
@@ -55,16 +53,24 @@ namespace TryCatch
     
         try
         {
-            int value{ array[5] };
-        }
-        catch (const ArrayException &exception)
+            try
+            {
+                int value{ array[5] };
+            }
+            catch (const ArrayException &exception)
+            {
+                std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
+                // std::cerr << "Error num:" << exception.getId() << "\n";
+                throw ; // rethrow the same error
+            }
+            catch (...)
+            {
+                std::cerr << "An undefined error occurs\n";
+            }
+        }catch (...)
         {
-            std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
-            // std::cerr << "Error num:" << exception.getId() << "\n";
+            std::cout << "Second catcher \n";
         }
-        catch (...)
-        {
-            std::cerr << "An undefined error occurs\n";
-        }
+
     }
 }
