@@ -4,6 +4,8 @@
 #include <utility> // For std::pair, std::make_pair, std::move, std::move_if_noexcept
 #include <stdexcept> // std::runtime_error
 #include <string_view>
+#include <memory>   
+        
 
 namespace SmartPointers
 {
@@ -252,6 +254,49 @@ namespace SmartPointers
         }
 
 
+    }
+
+    namespace MakeUnique
+    {
+        class Fraction
+        {
+        private:
+            int m_numerator{ 0 };
+            int m_denominator{ 1 };
+        
+        public:
+            Fraction(int numerator = 0, int denominator = 1) :
+                m_numerator{ numerator }, m_denominator{ denominator }
+            {
+            }
+        
+            friend std::ostream& operator<<(std::ostream& out, const Fraction &f1)
+            {
+                out << f1.m_numerator << '/' << f1.m_denominator;
+                return out;
+            }
+        };
+
+        std::unique_ptr<Fraction> createFraction(const int&& num, const int&& den)
+        {
+            return std::make_unique<Fraction>(num, den);
+        }
+        
+        //use std::make_unique() instead of creating std::unique_ptr and using new yourself
+        void caller()
+        {
+            // Create a single dynamically allocated Fraction with numerator 3 and denominator 5
+            // We can also use automatic type deduction to good effect here
+            auto f1{ std::make_unique<Fraction>(3, 5) };
+            std::cout << *f1 << '\n';
+        
+            // Create a dynamically allocated array of Fractions of length 4
+            auto f2{ std::make_unique<Fraction[]>(4) };
+            std::cout << f2[0] << '\n';
+
+            auto f3{createFraction(2,3)};
+            std::cout << *f3 << '\n';
+        }
     }
 
 }
