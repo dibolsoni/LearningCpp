@@ -281,6 +281,16 @@ namespace SmartPointers
         {
             return std::make_unique<Fraction>(num, den);
         }
+
+        // The function only uses the resource, so we'll accept a pointer to the resource, 
+        //not a reference to the whole std::unique_ptr<Fraction>
+        // If not passed by a pointer, the unique_ptr will change the owner of value and
+        //it will be destroyed at functions, setting source value to nullptr
+        void printFractionByPtr(Fraction* res)
+        {
+            // if (res)
+                std::cout << "printed: " << *res << '\n';
+        }
         
         //use std::make_unique() instead of creating std::unique_ptr and using new yourself
         void caller()
@@ -297,6 +307,8 @@ namespace SmartPointers
             // Create a single dynamically allocated Fraction returned by a function
             auto f3{createFraction(2,3)};
             std::cout << *f3 << '\n';
+
+            printFractionByPtr(f3.get());
         }
     }
 
