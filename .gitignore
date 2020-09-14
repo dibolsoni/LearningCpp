@@ -55,3 +55,7 @@ _deps
 .ninja_deps
 build.ninja
 rules.ninja
+
+#Valgrind -debuger
+./valgrind-out.txt
+valgrind-out.txt

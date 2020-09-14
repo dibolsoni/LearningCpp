@@ -34,6 +34,7 @@ namespace TryCatch
     
             return m_data[index];
         }
+        
     
     };
 
