@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 
 namespace TryCatch
 {
@@ -73,5 +74,38 @@ namespace TryCatch
             std::cout << "Second catcher \n";
         }
 
+    }
+
+    namespace Quiz
+    {
+        class Fraction
+        {
+            int f_numerator{};
+            int f_denominator{};
+        public:
+            Fraction(const int& num, const int& den)
+                : f_numerator{num}, f_denominator(den)
+            {
+                if (f_denominator == 0)
+                    throw std::runtime_error("Type a valid numerator");
+            }
+            inline const void print() const {
+                std::cout << f_numerator << "/" << f_denominator << '\n';
+            }
+
+
+        };
+
+        void caller()
+        {
+            try{
+                Fraction  f{0,0};
+                f.print();
+            } catch (std::exception &error) {
+                std::cout << "Error: invalid fraction, action: " << error.what() << "\n";
+            }
+
+
+        }
     }
 }

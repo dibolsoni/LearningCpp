@@ -119,7 +119,8 @@ int main()
     // Template::Quiz::questonTwoCaller();
     // Template::Quiz::questonThreeCaller();
 
-    TryCatch::caller();
+    // TryCatch::caller();
+    TryCatch::Quiz::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;
