@@ -23,7 +23,8 @@
 // #include "MonsterGenerator/main.cpp"
 // #include "InitializerList.cpp"
 // #include "Template.cpp"
-#include "TryCatch.cpp"
+// #include "TryCatch.cpp"
+#include "SmartPointersAndMove.cpp"
 
 
 #include "Timer.cpp"
@@ -120,7 +121,10 @@ int main()
     // Template::Quiz::questonThreeCaller();
 
     // TryCatch::caller();
-    TryCatch::Quiz::caller();
+    // TryCatch::Quiz::caller();
+
+
+    SmartPointers::caller();    
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;
