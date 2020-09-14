@@ -123,7 +123,9 @@ int main()
     // TryCatch::caller();
     // TryCatch::Quiz::caller();
 
-    SmartPointers::RValueRefs::main();    
+    // SmartPointers::RValueRefs::main();    
+    // SmartPointers::StdMove::caller();
+    SmartPointers::MoveAndCopyClass::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;

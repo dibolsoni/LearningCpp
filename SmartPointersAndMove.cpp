@@ -1,5 +1,9 @@
 #include <iostream>
-
+#include <string>
+#include <vector>
+#include <utility> // For std::pair, std::make_pair, std::move, std::move_if_noexcept
+#include <stdexcept> // std::runtime_error
+#include <string_view>
 
 namespace SmartPointers
 {
@@ -126,4 +130,128 @@ namespace SmartPointers
             const int &&ref8{ 5 }; // H
         }
     }
+
+    namespace StdMove
+    {
+        void caller()
+        {
+            std::vector<std::string> v;
+            std::string str = "Knock";
+        
+            std::cout << "Copying str\n";
+            v.push_back(str); // calls l-value version of push_back, which copies str into the array element
+            
+            std::cout << "str: " << str << '\n';
+            std::cout << "vector: " << v[0] << '\n';
+        
+            std::cout << "\nMoving str\n";
+        
+            v.push_back(std::move(str)); // calls r-value version of push_back, which moves str into the array element
+            
+            std::cout << "str: " << str << '\n';
+            std::cout << "vector:" << v[0] << ' ' << v[1] << '\n';
+        }
+    }
+
+    namespace MoveAndCopyClass
+    {
+        template<class T>
+        class MoveClass
+        {
+        private:
+            T* m_resource{};
+
+        public:
+            MoveClass() = default;
+
+            MoveClass(T resource)
+                : m_resource{new T{resource}}
+            {}
+
+            // copy constructor
+            MoveClass(const MoveClass& that)
+            {
+                //deep copy
+                if (that.m_resource != nullptr)
+                    m_resource = new T{*that.m_resource};
+            }
+
+            // move constructor
+            // move source value owner to class
+            MoveClass(MoveClass&& that)
+                : m_resource { that.m_resource }
+            {
+                //resets source value
+                that.m_resource = nullptr;
+            }
+
+            ~MoveClass()
+            {
+                std::cout << "Destroying " << *this << '\n';
+                delete m_resource;
+            }
+
+            friend std::ostream& operator<<(std::ostream& out, const MoveClass& move_class)
+            {
+                out << "MoveClass(";
+
+                if (move_class.m_resource == nullptr)
+                    out << "empty";
+                else
+                    out << *move_class.m_resource;
+
+                out << ")\n";
+
+                return out;
+            }
+
+        };
+
+        class CopyClass
+        {
+        public:
+            bool m_throw{};
+            
+            CopyClass() = default;
+            
+            // Copy constructor throws an exception when copying from a CopyClass object where its m_throw is 'true'
+            CopyClass(const CopyClass& that)
+                : m_throw{ that.m_throw }
+            {
+                if (m_throw)
+                {
+                throw std::runtime_error{ "abort!" };
+                }
+            }
+        };
+
+        void caller()
+        {
+              // We can make a std::pair without any problems:
+            std::pair my_pair{ MoveClass{ 13 }, CopyClass{} };
+            
+            std::cout << "my_pair.first: " << my_pair.first << '\n';
+            
+            // But the problem arises when we try to move that pair into another pair.
+            try
+            {
+                my_pair.second.m_throw = true; // To trigger copy constructor exception
+            
+                // The following line will throw an exception
+                // std::pair moved_pair{ std::move(my_pair) }; // after throw an error, source still be reseted(value wasnt returned)
+                std::pair moved_pair{std::move_if_noexcept(my_pair)}; // because of throw an error, source value is returned
+            
+                std::cout << "moved pair exists\n"; // Never prints
+            }
+            catch (const std::exception& ex)
+            {
+                std::cerr << "Error found: " << ex.what() << '\n';
+            }
+            
+            std::cout << "my_pair.first: " << my_pair.first << '\n';
+        }
+
+
+    }
+
 }
