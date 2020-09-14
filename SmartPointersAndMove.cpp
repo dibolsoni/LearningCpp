@@ -294,6 +294,7 @@ namespace SmartPointers
             auto f2{ std::make_unique<Fraction[]>(4) };
             std::cout << f2[0] << '\n';
 
+            // Create a single dynamically allocated Fraction returned by a function
             auto f3{createFraction(2,3)};
             std::cout << *f3 << '\n';
         }
