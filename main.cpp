@@ -24,7 +24,8 @@
 // #include "InitializerList.cpp"
 // #include "Template.cpp"
 // #include "TryCatch.cpp"
-#include "SmartPointersAndMove.cpp"
+// #include "SmartPointersAndMove.cpp"
+#include "SharedPtr.cpp"
 
 
 #include "Timer.cpp"
@@ -128,6 +129,9 @@ int main()
     // SmartPointers::MoveAndCopyClass::caller();
     // SmartPointers::MakeUnique::caller();
     // SmartPointers::Quiz::caller();
+
+    // SharedPrt::main();
+    SharedPrt::CircularDependency::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;
