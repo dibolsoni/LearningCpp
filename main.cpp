@@ -127,7 +127,7 @@ int main()
     // SmartPointers::StdMove::caller();
     // SmartPointers::MoveAndCopyClass::caller();
     // SmartPointers::MakeUnique::caller();
-    SmartPointers::Quiz::caller();
+    // SmartPointers::Quiz::caller();
 
     std::cout << "\nTime elapsed:" << t.elapsed() << " seconds\n";
     return EXIT_SUCCESS;
