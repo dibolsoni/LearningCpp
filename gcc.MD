@@ -19,10 +19,34 @@ Setting a language standart
 C++ standart library explicit linking (must be after target "main.cpp")
 <code>-lstdc++</code>
 
-All Flags
+Valgrind
+--leak-check=full: "each individual leak will be shown in detail"
+--show-leak-kinds=all: Show all of "definite, indirect, possible, reachable" leak kinds in the "full" report.
+--track-origins=yes: Favor useful output over speed. This tracks the origins of uninitialized values, which could be very useful for memory errors. Consider turning off if Valgrind is unacceptably slow.
+--verbose: Can tell you about unusual behavior of your program. Repeat for more verbosity.
+--log-file: Write to a file. Useful when output exceeds
+<code>valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --verbose \
+         --log-file=valgrind-out.txt \
+         ./executable exampleParam1</code>
+         
 
-<code> g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -std=c++2a main.cpp -lstdc++ -o main </code>
 
+# All Flags & Valgrind
+
+<code> g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -std=c++2a main.cpp -lstdc++ -o main \
+  && \
+  valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --verbose \
+         --log-file=valgrind-out.txt \
+         ./main exampleParam1 </code>
+         
+# Short version      
+<code>g++ -std=c++2a main.cpp -lstdc++ -o main && valgrind --leak-check=full ./main</code>
 
 
 
